@@ -111,10 +111,10 @@ class _MainPageState extends State<MainPage> {
                         ),
                       )
                     ),
-                    height: 70,
+                    height: 60,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '${index+1}. ${trendsList[index]}',
+                      '   ${index+1}. ${trendsList[index]}',
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                   );

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yacht">
+    package="com.example.yacht"
+    android:installLocation="preferExternal">
    <application
         android:label="yacht"
         android:name="${applicationName}"

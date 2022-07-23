@@ -95,12 +95,16 @@ class _MainHomeState extends State<MainHome> {
                     child: Row(
                       children: [
                         Text(
-                          '   ${index + 1}. ${trendsList[index]}',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          '   ${index + 1}. ',
+                          style: TextStyle(color: Colors.black, fontSize: 25, fontFamily: "Timmana"),
+                        ),
+                        Text(
+                            '${trendsList[index]}',
+                          style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Timmana"),
                         ),
                         Text(
                           '    검색 횟수 ${trafficList[index]}',
-                          style: TextStyle(color: Colors.grey, fontSize: 15),
+                          style: TextStyle(color: Colors.grey, fontSize: 15, fontFamily: "Timmana"),
                         ),
                       ],
                     ),

@@ -125,10 +125,20 @@ class _NewsPageState extends State<NewsPage> {
                       alignment: Alignment.centerLeft,
                       child: Row(
                         children: [
+                          Center(
+                            child: Text(
+                              '   ${index + 1}. ',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                                fontFamily: "Timmana"
+                              ),
+                            ),
+                          ),
                           Expanded(
                             child: Text(
-                              '   ${index + 1}. ${newsTitleList[index]}', // 뉴스 제목 출력
-                              style: TextStyle(color: Colors.black, fontSize: 15),
+                              '${newsTitleList[index]}', // 뉴스 제목 출력
+                              style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Timmana"),
                             ),
                           ),
                         ],

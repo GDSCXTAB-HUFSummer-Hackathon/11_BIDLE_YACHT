@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
 import 'package:yacht/mainpage.dart';
 import 'package:yacht/news.dart';
+import 'package:yacht/sports.dart';
+import 'package:yacht/covid.dart';
 
 void main() {
   getXmlData();
@@ -56,7 +58,7 @@ class NavigatorPage extends StatefulWidget {
 
 class _NavigatorPageState extends State<NavigatorPage> {
   int _selectedIndex = 0;
-  List _pages = [MainPage(), News()];
+  List _pages = [MainPage(), News(), sports(), Text("연예"), Covid()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,18 +87,18 @@ class _NavigatorPageState extends State<NavigatorPage> {
               label: '뉴스'),
           BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/entertainment.png',
-                width: 20,
-                height: 20,
-              ),
-              label: '연예'),
-          BottomNavigationBarItem(
-              icon: Image.asset(
                 'assets/sports.png',
                 width: 20,
                 height: 20,
               ),
               label: '스포츠'),
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/entertainment.png',
+                width: 20,
+                height: 20,
+              ),
+              label: '연예'),
           BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/covid.png',

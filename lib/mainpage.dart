@@ -14,7 +14,7 @@ getXmlData() async { // async -> 비동기적 방식
     http.Response response = await http.get(Uri.parse(url));
     xml2Json.parse(response.body);
     var jsonString = xml2Json.toParker();
-    for (int i = 1; i <= 7; i++) {
+    for (int i = 2; i <= 8; i++) {
       trendsList
           .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["title"]);
       trafficList

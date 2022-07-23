@@ -17,18 +17,18 @@ getNewsXmlData() async {
     http.Response response = await http.get(Uri.parse(url));
     xml2Json.parse(response.body);
     var jsonString = xml2Json.toParker();
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 2; i <= 6; i++) {
       newsTitleList
           .add(jsonDecode(jsonString.replaceAll('&#39;', "'"))["rss"]["channel"]["item"][i]["ht:news_item"][0]["ht:news_item_title"]);
     }
-    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][6]["ht:news_item"]["ht:news_item_title"]);
     newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][7]["ht:news_item"][0]["ht:news_item_title"]);
+    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][8]["ht:news_item"][0]["ht:news_item_title"]);
 
-    for(int i = 1; i <= 5; i++) {
+    for(int i = 2; i <= 6; i++) {
       linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["ht:news_item"][0]["ht:news_item_url"]);
     }
-    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][6]["ht:news_item"]["ht:news_item_url"]);
     linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][7]["ht:news_item"][0]["ht:news_item_url"]);
+    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][8]["ht:news_item"][0]["ht:news_item_url"]);
 
     for (int i = 0; i < newsTitleList.length; i++) {
       newsTitleList[i].replaceAll('&#39;', "'");

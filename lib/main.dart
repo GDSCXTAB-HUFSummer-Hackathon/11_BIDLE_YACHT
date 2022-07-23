@@ -6,6 +6,7 @@ import 'package:yacht/news.dart';
 
 void main() {
   getXmlData();
+  getNewsXmlData();
   runApp(const MyApp());
 }
 
@@ -55,7 +56,7 @@ class NavigatorPage extends StatefulWidget {
 
 class _NavigatorPageState extends State<NavigatorPage> {
   int _selectedIndex = 0;
-  List _pages = [MainPage(), Text('page2')];
+  List _pages = [MainPage(), News()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

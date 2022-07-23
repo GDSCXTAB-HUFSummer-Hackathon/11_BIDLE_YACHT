@@ -4,21 +4,25 @@ import 'package:xml2json/xml2json.dart';
 import 'dart:convert';
 
 final List<String> trendsList = [];
+final List<String> trafficList = [];
 final Xml2Json xml2Json = Xml2Json();
 // xml -> json client transformer
-getXmlData() async {
+getXmlData() async { // async -> 비동기적 방식
   try {
     String url =
         'https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR'; // xml data
     http.Response response = await http.get(Uri.parse(url));
     xml2Json.parse(response.body);
     var jsonString = xml2Json.toParker();
-    for (int i = 0; i <= 6; i++) {
+    for (int i = 1; i <= 7; i++) {
       trendsList
           .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["title"]);
+      trafficList
+          .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["ht:approx_traffic"]);
     }
     // var selectedJson = jsonDecode(jsonString)["rss"]["channel"]["item"][0]["title"];
     print(trendsList);
+    print(trafficList);
     return jsonDecode(jsonString);
   } catch (e) {
     print('error: $e');
@@ -88,9 +92,17 @@ class _MainHomeState extends State<MainHome> {
                     )),
                     height: 60,
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      '   ${index + 1}. ${trendsList[index]}',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          '   ${index + 1}. ${trendsList[index]}',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        Text(
+                          '    검색 횟수 ${trafficList[index]}',
+                          style: TextStyle(color: Colors.grey, fontSize: 15),
+                        ),
+                      ],
                     ),
                   );
                 }),

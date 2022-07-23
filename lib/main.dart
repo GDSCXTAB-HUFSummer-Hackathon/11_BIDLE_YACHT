@@ -7,8 +7,8 @@ import 'package:yacht/sports.dart';
 import 'package:yacht/covid.dart';
 
 void main() {
-  getXmlData();
-  getNewsXmlData();
+  getXmlData(); // mainpage.dart, 비동기적으로 xml 불러와 여러 작업하는 함수
+  getNewsXmlData(); // news.dart, 비동기적으로 xml 불러와 여러 작업하는 함수
   runApp(const MyApp());
 }
 
@@ -69,7 +69,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black,
         backgroundColor: Colors.white,
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex, // 초기 페이지 인덱스 지정: 0
         items: [
           BottomNavigationBarItem(
               icon: Image.asset(

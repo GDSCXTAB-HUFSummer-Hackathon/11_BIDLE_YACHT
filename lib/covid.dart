@@ -29,21 +29,22 @@ class CovidHome extends StatefulWidget {
 }
 
 class _CovidHomeState extends State<CovidHome> {
-  var currentPeople_2 = <String>[];
-  var inTreat_2 = <String>[];
-  var newPeople_2 = <String>[];
-  var dead_2 = <String>[];
+  // 각 데이터 저장을 위한 리스트
+  var currentPeople_2 = <String>[]; // 오늘의 확진자 수
+  var inTreat_2 = <String>[]; // 재원 위중증자 수
+  var newPeople_2 = <String>[]; // 신규 입원 환자 수
+  var dead_2 = <String>[]; // 일일 사망자 수
 
-  void _getDataFromWeb() async {
+  void _getDataFromWeb() async { // 웹 스크래핑을 비동기적으로 실행하는 함수
     final response = await http.get(Uri.parse(
         'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98'));
     dom.Document document = parse.parse(response.body);
 
-    setState(() {
+    setState(() { // 변수를 데이터에 따라 동적으로 바꿔주기 위해 setState() 사용
       final currentPeople_1 = document.getElementsByClassName('info_01');
       currentPeople_2 = currentPeople_1
           .map((element) =>
-              element.getElementsByClassName('info_num')[0].innerHtml)
+              element.getElementsByClassName('info_num')[0].innerHtml) // innerHtml 속성을 사용해 태그 안쪽의 내용을 불러옴
           .toList();
 
       final inTreat_1 = document.getElementsByClassName('info_02');

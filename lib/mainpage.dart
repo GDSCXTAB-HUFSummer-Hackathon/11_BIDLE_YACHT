@@ -3,8 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:xml2json/xml2json.dart';
 import 'dart:convert';
 
-final List<String> trendsList = [];
-final List<String> trafficList = [];
+//
+final List<String> trendsList = []; // 검색어 저장
+final List<String> trafficList = []; // 검색 횟수 저장
 final Xml2Json xml2Json = Xml2Json();
 // xml -> json client transformer
 getXmlData() async { // async -> 비동기적 방식
@@ -13,14 +14,13 @@ getXmlData() async { // async -> 비동기적 방식
         'https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR'; // xml data
     http.Response response = await http.get(Uri.parse(url));
     xml2Json.parse(response.body);
-    var jsonString = xml2Json.toParker();
-    for (int i = 2; i <= 8; i++) {
+    var jsonString = xml2Json.toParker(); // 개발 편의성을 위해 xml을 json으로 변환
+    for (int i = 2; i <= 8; i++) { // 반복문을 통해 검색어와 검색 횟수를 각각 저장
       trendsList
-          .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["title"]);
+          .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["title"]); // json을 decoding하여 리스트에 저장
       trafficList
           .add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["ht:approx_traffic"]);
     }
-    // var selectedJson = jsonDecode(jsonString)["rss"]["channel"]["item"][0]["title"];
     print(trendsList);
     print(trafficList);
     return jsonDecode(jsonString);

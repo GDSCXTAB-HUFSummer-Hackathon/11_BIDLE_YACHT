@@ -76,132 +76,141 @@ class _CovidHomeState extends State<CovidHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'COVID-19',
-          style: TextStyle(color: Colors.white),
-        ),
+    if(currentPeople_2.isNotEmpty){
+      return Scaffold(
         backgroundColor: Colors.blue,
-        elevation: 0,
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              _getDataFromWeb();
-            },
-            child: Text("  오늘의 확진자 수",
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            'COVID-19',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.blue,
+          elevation: 0,
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                _getDataFromWeb();
+              },
+              child: Text("  오늘의 확진자 수",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.white,
+                  )),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Center(
+              child: Text(
+                "${currentPeople_2[0]}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 60,
                   color: Colors.white,
-                )),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Center(
-            child: Text(
-              "${currentPeople_2[0]}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 60,
-                color: Colors.white,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 44.4),
-          Container(
-            width: double.infinity,
-            height: 370,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40.0),
-                    topRight: Radius.circular(40.0))),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
+            SizedBox(height: 44.4),
+            Container(
+              width: double.infinity,
+              height: 370,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40.0),
+                      topRight: Radius.circular(40.0))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          '  일일 확진',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        SizedBox(
+                          width: 110,
+                        ),
+                        Text(
+                          '재원 위중증',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        )
+                      ]),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        '  일일 확진',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
-                      ),
-                      SizedBox(
-                        width: 110,
+                        '${currentPeople_2[0]}',
+                        style: TextStyle(color: Colors.red, fontSize: 23),
                       ),
                       Text(
-                        '재원 위중증',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
-                      )
-                    ]),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      '${currentPeople_2[0]}',
-                      style: TextStyle(color: Colors.red, fontSize: 23),
-                    ),
-                    Text(
-                      '                             ${inTreat_2[0]}',
-                      style: TextStyle(color: Colors.red, fontSize: 23),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
+                        '                             ${inTreat_2[0]}',
+                        style: TextStyle(color: Colors.red, fontSize: 23),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          '신규 입원',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        SizedBox(
+                          width: 110,
+                        ),
+                        Text(
+                          '일일 사망',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        )
+                      ]
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        '신규 입원',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
-                      ),
-                      SizedBox(
-                        width: 110,
+                        '${newPeople_2[0]}',
+                        style: TextStyle(color: Colors.red, fontSize: 23),
                       ),
                       Text(
-                        '일일 사망',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
-                      )
-                    ]
-                ),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      '${newPeople_2[0]}',
-                      style: TextStyle(color: Colors.red, fontSize: 23),
-                    ),
-                    Text(
-                      '                               ${dead_2[0]}',
-                      style: TextStyle(color: Colors.red, fontSize: 23),
-                    ),
-                  ],
-                ),
-              ],
+                        '                               ${dead_2[0]}',
+                        style: TextStyle(color: Colors.red, fontSize: 23),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    } else {
+      return Center(
+        child: Container(
+          width: 100,
+            height: 100,
+            child: CircularProgressIndicator()),
+      );
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:xml2json/xml2json.dart';
 import 'dart:convert';
 
-//
+
 final List<String> trendsList = []; // 검색어 저장
 final List<String> trafficList = []; // 검색 횟수 저장
 final Xml2Json xml2Json = Xml2Json();
@@ -85,7 +85,7 @@ class _MainHomeState extends State<MainHome> {
                 itemCount: trendsList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         border: Border(
                       bottom: BorderSide(color: Colors.grey, width: 0.5),
                       top: BorderSide(color: Colors.grey, width: 0.5),

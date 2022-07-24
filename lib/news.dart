@@ -16,23 +16,25 @@ getNewsXmlData() async {
     http.Response response = await http.get(Uri.parse(url));
     xml2Json.parse(response.body); // xml에서 body만을 parsing해옴
     var jsonString = xml2Json.toParker(); // xml을 json으로 변환 (개발의 편의성을 위함)
-    for (int i = 2; i <= 6; i++) {
+    newsTitleList.add(jsonDecode(jsonString.replaceAll('&quot;', "'"))["rss"]["channel"]["item"][0]["ht:news_item"][0]["ht:news_item_title"]);
+    for (int i = 1; i <= 3; i++) {
       newsTitleList
           .add(jsonDecode(jsonString.replaceAll('&#39;', "'"))["rss"]["channel"]["item"][i]["ht:news_item"][0]["ht:news_item_title"]);
     }
-    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][7]["ht:news_item"][0]["ht:news_item_title"]);
-    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][8]["ht:news_item"][0]["ht:news_item_title"]);
+    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][4]["ht:news_item"]["ht:news_item_title"]);
+    newsTitleList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][5]["ht:news_item"][0]["ht:news_item_title"]);
 
-    for(int i = 2; i <= 6; i++) {
+    for(int i = 0; i <= 3; i++) {
       linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][i]["ht:news_item"][0]["ht:news_item_url"]);
     }
-    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][7]["ht:news_item"][0]["ht:news_item_url"]);
-    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][8]["ht:news_item"][0]["ht:news_item_url"]);
+    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][4]["ht:news_item"]["ht:news_item_url"]);
+    linkList.add(jsonDecode(jsonString)["rss"]["channel"]["item"][5]["ht:news_item"][0]["ht:news_item_url"]);
 
     for (int i = 0; i < newsTitleList.length; i++) {
       newsTitleList[i].replaceAll('&#39;', "'");
-      newsTitleList[i].replaceAll('&quot;', "");
+      newsTitleList[i].replaceAll('&quot;', "'");
     }
+    newsTitleList[0].replaceAll('&quot;', "'");
 
     // var selectedJson = jsonDecode(jsonString)["rss"]["channel"]["item"][0]["title"];
     print(newsTitleList);
@@ -138,7 +140,7 @@ class _NewsPageState extends State<NewsPage> {
                           Expanded(
                             child: Text(
                               '${newsTitleList[index]}', // 뉴스 제목 출력
-                              style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Timmana"),
+                              style: TextStyle(color: Colors.black, fontSize: 25, fontFamily: "Timmana"),
                             ),
                           ),
                         ],
